@@ -8,4 +8,4 @@ async def say_hello(name: str) -> str:
     return f"Hello MCP Client, {name}! I am a MCP Server 🎉"
 
 if __name__ == "__main__":
-    mcp.run(transport="http")  # ✅ Now serves over HTTP
+    mcp.run(transport="http")  #  serves over HTTP
