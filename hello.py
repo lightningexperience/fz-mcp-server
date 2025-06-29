@@ -1,4 +1,10 @@
+import logging
+from fastapi.responses import PlainTextResponse
 from mcp.server.fastmcp import FastMCP
+
+# Setup logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 mcp = FastMCP("hello-world")
 
@@ -6,9 +12,12 @@ mcp = FastMCP("hello-world")
 async def say_hello(name: str) -> str:
     return f"Hello MCP Client, {name}! I am a MCP Server 🎉"
 
-# This is the correct ASGI app you can reference in uvicorn
-app = mcp.asgi_app()  # << Add this line
+@mcp.app.get("/", response_class=PlainTextResponse)
+async def root():
+    return "MCP Server is running and ready."
 
-# Print startup message to logs (stdout)
-print("MCP Server ready! ASGI app exposed. Visit endpoint or connect via client.")
+# Log a message to confirm server start
+logger.info("MCP Server initialized and HTTP interface is ready.")
 
+# Expose FastAPI app
+app = mcp.app
