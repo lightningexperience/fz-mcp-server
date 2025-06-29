@@ -4,8 +4,7 @@ mcp = FastMCP("hello-world")
 
 @mcp.tool()
 async def say_hello(name: str) -> str:
-    """Say Hello to a person."""
-    return f"Hello MCP Client, {name}! I am a MCP Server!"
+    return f"Hello MCP Client, {name}! I am a MCP Server 🎉"
 
-if __name__ == "__main__":
-    mcp.run(transport="http")  # This will expose the server on HTTP automatically
+# This is the correct ASGI app you can reference in uvicorn
+app = mcp.asgi_app()  # << Add this line
