@@ -1,7 +1,7 @@
 from mcp.server.fastmcp import FastMCP
 from fastapi.responses import PlainTextResponse
 
-mcp = FastMCP("hello-world")
+mcp = FastMCP("easy-mcp-server")
 
 @mcp.tool()
 async def say_hello(name: str) -> str:
